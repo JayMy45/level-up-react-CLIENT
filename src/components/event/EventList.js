@@ -14,9 +14,9 @@ export const EventList = (props) => {
         <article className="events">
             {
                 events.map(event => {
-                    return <>
+                    return <React.Fragment key={`game--${event.id}`}>
                         <div className="columns box" id="event__list">
-                            <section key={`event--${event.id}`} className="event column">
+                            <section className="event column">
                                 <div className="game__title has-text-left">Organizer: {event.organizer.full_name}</div>
                                 <div className="game__players has-text-left">Description: {event.description}</div>
                                 {
@@ -26,7 +26,7 @@ export const EventList = (props) => {
                                 }
                             </section>
                         </div>
-                    </>
+                    </React.Fragment>
                 })
             }
         </article>

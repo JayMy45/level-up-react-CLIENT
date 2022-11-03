@@ -21,15 +21,15 @@ export const GameList = (props) => {
         <article className="games">
             {
                 games.map(game => {
-                    return <>
-                        <div key={`game--${game.id}`} className="columns box" id="game__list">
-                            <section key={`game--${game.id}`} className="game column">
+                    return <React.Fragment key={`game--${game.id}`}>
+                        <div className="columns box" id="game__list" key={`game--${game.id}`}>
+                            <section className="game column" >
                                 <div className="game__title has-text-left">{game.title} by {game.maker}</div>
                                 <div className="game__players has-text-left">{game.number_of_players} players needed</div>
                                 <div className="game__skillLevel has-text-left">Skill level is {game.skill_level}</div>
                             </section>
                         </div>
-                    </>
+                    </React.Fragment>
                 })
             }
         </article>
