@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { getEvents } from "../../managers/EventManager.js"
+import { deleteEvent, getEvents } from "../../managers/EventManager.js"
 import "./Event.css"
 
 export const EventList = (props) => {
@@ -10,6 +10,15 @@ export const EventList = (props) => {
     useEffect(() => {
         getEvents().then(data => setEvents(data))
     }, [])
+
+    //  handles confirmation of deletion via a popup
+    const confirmDelete = (evt, event) => {
+        // whenever confirmed by clicking OK/Cancel window.confirm() returns boolean 
+        let text = 'Are you sure you want to delete'
+        window.confirm(text)
+            ? deleteEvent(event.id).then(() => navigate("/events"))
+            : <></>
+    }
 
     return (<>
         <header className="title is-3 p-2 has-text-centered" id="event__list-title">Events</header>
@@ -35,8 +44,13 @@ export const EventList = (props) => {
                                 }
 
                             </section>
-                            <div className="">
-                                <button className="btn__update button is-link" onClick={() => navigate(`/events/${event.id}`)}>Update</button>
+                            <div>
+                                <div className="">
+                                    <button className="btn__events button is-link is-small" onClick={() => navigate(`/events/${event.id}`)}>Update</button>
+                                </div>
+                                <div className="mt-1">
+                                    <button className="btn__events button is-small is-danger" onClick={(evt) => { confirmDelete(evt, event) }}>Delete</button>
+                                </div>
                             </div>
                         </div>
                     </React.Fragment>

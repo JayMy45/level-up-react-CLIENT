@@ -20,7 +20,6 @@ export const EventEdit = () => {
         provide some default values.
     */
 
-
     // Whenever eventId changes useEffect invokes this function
     const renderEvent = () => {
         if (eventId) {
@@ -101,27 +100,28 @@ export const EventEdit = () => {
 
 
             {/* TODO: create the rest of the input fields */}
+            <div className="has-text-centered">
+                <button type="submit"
+                    onClick={evt => {
+                        // Prevent form from being submitted
+                        evt.preventDefault()
 
-            <button type="submit"
-                onClick={evt => {
-                    // Prevent form from being submitted
-                    evt.preventDefault()
+                        const event = {
+                            id: currentEvent.id,
+                            organizer: currentEvent.organizer,
+                            description: currentEvent.description,
+                            game: currentEvent.game,
+                            date: currentEvent.date,
+                            time: currentEvent.time
+                        }
 
-                    const event = {
-                        id: currentEvent.id,
-                        organizer: currentEvent.organizer,
-                        description: currentEvent.description,
-                        game: currentEvent.game,
-                        date: currentEvent.date,
-                        time: currentEvent.time
-                    }
-
-                    // Send POST request to your API
-                    saveEditedEvent(event)
-                        .then(() => navigate("/events"))
-                }}
-                className="button is-primary ml-6">Update Event</button>
-            <button type="button" className="btn__update button is-link ml-2" onClick={() => navigate(`/events`)}>Return to Events</button>
+                        // Send POST request to your API
+                        saveEditedEvent(event)
+                            .then(() => navigate("/events"))
+                    }}
+                    className="button is-primary ml-6">Update Event</button>
+                <button type="button" className="btn__update button is-link ml-2" onClick={() => navigate(`/events`)}>Return to Events</button>
+            </div>
         </form>
     )
 }

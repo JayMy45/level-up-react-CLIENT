@@ -42,3 +42,10 @@ export const saveEditedEvent = (event) => {
     })
 }
 
+// DELETE single event
+export const deleteEvent = (eventId) => {
+    return fetch(`http://localhost:8000/events/${eventId}`, {
+        method: "DELETE",
+        headers: { "Authorization": `Token ${localStorage.getItem("lu_token")}` },
+    })
+}

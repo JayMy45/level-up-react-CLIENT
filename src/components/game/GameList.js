@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { getGames } from "../../managers/GameManager.js"
+import { getGames, deleteGame } from "../../managers/GameManager.js"
 import "./Game.css"
 
 export const GameList = (props) => {
@@ -10,6 +10,16 @@ export const GameList = (props) => {
     useEffect(() => {
         getGames().then(data => setGames(data))
     }, [])
+
+    //  handles confirmation of deletion via a popup
+    const confirmDelete = (evt, game) => {
+        // whenever confirmed by clicking OK/Cancel window.confirm() returns boolean 
+        let text = 'Are you sure you want to delete'
+        window.confirm(text)
+            ? deleteGame(game.id).then(() => navigate("/games"))
+            : <></>
+    }
+
 
     return (<>
         <header className="title is-3 p-2 has-text-centered" id="game__list-title">List of Games</header>
@@ -29,8 +39,13 @@ export const GameList = (props) => {
                                 <div className="game__players has-text-left">Number of Players: {game.number_of_players}</div>
                                 <div className="game__skillLevel has-text-left">Skill Level: {game.skill_level}</div>
                             </section>
-                            <div className="">
-                                <button className="btn__update button is-link" onClick={() => navigate(`/games/${game.id}`)}>Update</button>
+                            <div>
+                                <div className="">
+                                    <button className="btn__games button is-link is-small mb-1" onClick={() => navigate(`/games/${game.id}`)}>Update</button>
+                                </div>
+                                <div className="">
+                                    <button className="btn__games button is-danger is-small" onClick={(evt) => { confirmDelete(evt, game) }}>Delete</button>
+                                </div>
                             </div>
                         </div>
                     </React.Fragment>

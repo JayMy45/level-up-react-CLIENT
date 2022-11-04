@@ -44,6 +44,7 @@ export const GameEdit = () => {
     }, [gameId])
 
 
+
     const changeGameState = (domGame) => {
         // TODO: Complete the onChange function
         const value = domGame.target.value
@@ -119,28 +120,29 @@ export const GameEdit = () => {
 
 
             {/* TODO: create the rest of the input fields */}
+            <div className="has-text-centered">
+                <button type="submit"
+                    onClick={evt => {
+                        // Prevent form from being submitted
+                        evt.preventDefault()
 
-            <button type="submit"
-                onClick={evt => {
-                    // Prevent form from being submitted
-                    evt.preventDefault()
+                        const game = {
+                            id: currentGame.id,
+                            gamer: currentGame.gamer,
+                            title: currentGame.title,
+                            maker: currentGame.maker,
+                            number_of_players: currentGame.number_of_players,
+                            skill_level: currentGame.skill_level,
+                            game_type: currentGame.game_type
+                        }
 
-                    const game = {
-                        id: currentGame.id,
-                        gamer: currentGame.gamer,
-                        title: currentGame.title,
-                        maker: currentGame.maker,
-                        number_of_players: currentGame.number_of_players,
-                        skill_level: currentGame.skill_level,
-                        game_type: currentGame.game_type
-                    }
-
-                    // Send POST request to your API
-                    saveEditedGame(game)
-                        .then(() => navigate("/games"))
-                }}
-                className="button is-primary ml-6">Update Game</button>
-            <button type="button" className="button is-link ml-2" onClick={() => navigate("/games")}>Return to Games</button>
+                        // Send POST request to your API
+                        saveEditedGame(game)
+                            .then(() => navigate("/games"))
+                    }}
+                    className="button is-primary ml-6 ">Update Game</button>
+                <button type="button" className="button is-link ml-2" onClick={() => navigate("/games")}>Return to Games</button>
+            </div>
         </form>
     )
 }
