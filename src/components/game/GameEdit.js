@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useNavigate, useParams } from 'react-router-dom'
-import { getGameById, saveEditedGame } from "../../managers/GameManager.js"
+import { getGameById, getGames, getGameTypes, saveEditedGame } from "../../managers/GameManager.js"
 
 
 
@@ -8,10 +8,13 @@ export const GameEdit = () => {
     const { gameId } = useParams()
     const navigate = useNavigate()
 
+    const [gameTypes, setGamesTypes] = useState([])
     const [currentGame, setCurrentGames] = useState({
-        description: "",
-        date: "",
-        time: "",
+        title: "",
+        maker: "",
+        number_of_players: 0,
+        skill_level: 0,
+        game_type: 0
     })
 
     /*
@@ -19,6 +22,10 @@ export const GameEdit = () => {
         the properties of this state variable, you need to
         provide some default values.
     */
+
+    useEffect(() => {
+        getGameTypes().then(data => setGamesTypes(data))
+    }, [])
 
 
     // Whenever gameId changes useEffect invokes this function
@@ -47,42 +54,53 @@ export const GameEdit = () => {
     }
 
     return (
-        <form className="gameForm">
+        <form className="gameForm box mt-6">
             <h1 className="gameForm__title mb-3">Update Game</h1>
 
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="description">Description: </label>
-                    <input type="text" name="description" required autoFocus className="form-control"
-                        value={currentGame.description}
-                        placeholder={currentGame.description}
+                    <label htmlFor="title">Title: </label>
+                    <input type="text" name="title" required autoFocus className="form-control"
+                        value={currentGame.title}
+                        placeholder={currentGame.title}
                         onChange={changeGameState}
                     />
                 </div>
             </fieldset>
 
-            {/* <fieldset>
+            <fieldset>
                 <div className="form-group">
-                    <label htmlFor="game_type">Games: </label>
+                    <label htmlFor="maker">Maker: </label>
+                    <input type="text" name="maker" required autoFocus className="form-control"
+                        value={currentGame.maker}
+                        placeholder={currentGame.maker}
+                        onChange={changeGameState}
+                    />
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="game_type">Game Type: </label>
                     <select name="gameId" className="drop__down" value={currentGame.gameId}
                         onChange={changeGameState}
                     >
-                        <option value={0}>{currentGame.title}</option>
+                        <option value={0}>{currentGame.label}</option>
                         {
-                            currentGame.map((g) => {
-                                return <option value={`${g.id}`} key={`game--${g.id}`}>{g.title}</option>
+                            gameTypes.map((g) => {
+                                return <option value={`${g.id}`} key={`game--${g.id}`}>{g.label}</option>
                             })
                         }
                     </select>
                 </div>
-            </fieldset> */}
+            </fieldset>
 
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="date">Date: </label>
-                    <input type="date" name="date" required autoFocus className="form-control"
-                        placeholder={currentGame.date}
-                        value={currentGame.date}
+                    <label htmlFor="number_of_players">Number of Players: </label>
+                    <input type="number" name="number_of_players" required autoFocus className="form-control"
+                        placeholder={currentGame.number_of_players}
+                        value={currentGame.number_of_players}
                         onChange={changeGameState}
                     />
                 </div>
@@ -90,10 +108,10 @@ export const GameEdit = () => {
 
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="description">Time: </label>
-                    <input type="time" name="time" required autoFocus className="form-control"
-                        placeholder={currentGame.time}
-                        value={currentGame.time}
+                    <label htmlFor="description">Skill_level: </label>
+                    <input type="number" name="skill_level" required autoFocus className="form-control"
+                        placeholder={currentGame.skill_level}
+                        value={currentGame.skill_level}
                         onChange={changeGameState}
                     />
                 </div>
@@ -111,9 +129,9 @@ export const GameEdit = () => {
                         id: currentGame.id,
                         gamer: currentGame.gamer,
                         title: currentGame.title,
-                        make: currentGame.maker,
-                        number_of_players: currentGame.date,
-                        skill_level: currentGame.time,
+                        maker: currentGame.maker,
+                        number_of_players: currentGame.number_of_players,
+                        skill_level: currentGame.skill_level,
                         game_type: currentGame.game_type
                     }
 
@@ -122,7 +140,7 @@ export const GameEdit = () => {
                         .then(() => navigate("/games"))
                 }}
                 className="button is-primary ml-6">Update Game</button>
-            <button className="button is-link ml-2" onClick={() => navigate("/games")}>Return to Games</button>
+            <button type="button" className="button is-link ml-2" onClick={() => navigate("/games")}>Return to Games</button>
         </form>
     )
 }

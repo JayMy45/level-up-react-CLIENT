@@ -39,46 +39,39 @@ export const NavBar = () => {
                                     <Link to="/events">Events</Link>
                                 </li>
                             </div>
-                        </ul>
-                    </div>
 
-                    <div className="">
-                        <div className="navbar-item">
-                            <div className="buttons">
-                                <ul>
-                                    {
-                                        (localStorage.getItem("lu_token") !== null) ?
-                                            <li className="navbar-item">
-                                                <button className="nav-link fakeLink is-link"
-                                                    onClick={() => {
-                                                        localStorage.removeItem("lu_token")
-                                                        navigate('/login')
-                                                    }}
-                                                >Logout</button>
-                                            </li> :
-                                            <>
-                                                <div>
-                                                    <div className="navbar-item">
-                                                        <div className="navbar-item">
-                                                            <li className="nav-item">
-                                                                <Link className="nav-link is-link" to="/login">Login</Link>
-                                                            </li>
-                                                        </div>
-                                                        <div className="navbar-item">
-                                                            <li className="nav-item">
-                                                                <Link className="nav-link is-link" to="/register">Register</Link>
-                                                            </li>
-                                                        </div>
-                                                    </div>
+                            {
+                                (localStorage.getItem("lu_token") !== null) ?
+                                    <li className="navbar-item">
+                                        <button className="nav-link fakeLink is-link"
+                                            onClick={() => {
+                                                localStorage.removeItem("lu_token")
+                                                navigate('/login')
+                                            }}
+                                        >Logout</button>
+                                    </li> :
+                                    <>
+                                        <div>
+                                            <div className="navbar-item">
+                                                <div className="navbar-item">
+                                                    <li className="nav-item">
+                                                        <Link className="nav-link is-link" to="/login">Login</Link>
+                                                    </li>
                                                 </div>
-                                            </>
-                                    }
-                                </ul>
-                            </div>
-                        </div>
+                                                <div className="navbar-item">
+                                                    <li className="nav-item">
+                                                        <Link className="nav-link is-link" to="/register">Register</Link>
+                                                    </li>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </>
+                            }
+                        </ul>
                     </div>
                 </div>
             </div>
+
 
         </nav >
     )

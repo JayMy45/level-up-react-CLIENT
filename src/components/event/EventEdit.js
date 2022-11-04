@@ -47,7 +47,7 @@ export const EventEdit = () => {
     }
 
     return (
-        <form className="gameForm">
+        <form className="gameForm box mt-6">
             <h1 className="gameForm__title">Update Event</h1>
 
             <fieldset>

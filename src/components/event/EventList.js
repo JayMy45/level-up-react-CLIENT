@@ -22,22 +22,22 @@ export const EventList = (props) => {
             {
                 events.map(event => {
                     return <React.Fragment key={`game--${event.id}`}>
-                        <div className="columns box" id="event__list">
-                            <section className="event">
-                                <div className="mb-3">
-                                    <div className="game__title has-text-left">Organizer: {event.organizer.full_name}</div>
-                                    <div className="game__title has-text-left">Game: {event.game.title}</div>
-                                    <div className="game__players has-text-left">Description: {event.description}</div>
-                                    {
-                                        event.date
-                                            ? <><div className="game__skillLevel has-text-left">Date: {event.date}</div></>
-                                            : <><div>Date: To Be Announced</div></>
-                                    }
-                                </div>
-                                <div className="">
-                                    <button className="btn__update button is-link" onClick={() => navigate(`/events/${event.id}`)}>Update</button>
-                                </div>
+                        <div className="columns box columns" id="event__list">
+                            <section className="event column">
+
+                                <div className="game__title has-text-left">Organizer: {event.organizer.full_name}</div>
+                                <div className="game__title has-text-left">Game: {event.game.title}</div>
+                                <div className="game__players has-text-left">Description: {event.description}</div>
+                                {
+                                    event.date
+                                        ? <><div className="game__skillLevel has-text-left">Date: {event.date}</div></>
+                                        : <><div>Date: To Be Announced</div></>
+                                }
+
                             </section>
+                            <div className="">
+                                <button className="btn__update button is-link" onClick={() => navigate(`/events/${event.id}`)}>Update</button>
+                            </div>
                         </div>
                     </React.Fragment>
                 })
