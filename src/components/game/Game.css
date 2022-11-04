@@ -5,6 +5,10 @@
     padding: 1rem;
 }
 
-/* #game__list-title {
+.gameForm {
     margin: auto;
-} */
+    width: 50%;
+    padding-left: 4rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}

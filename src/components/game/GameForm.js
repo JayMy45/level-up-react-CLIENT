@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from 'react-router-dom'
-import { createGame, getGames, getGameTypes } from '../../managers/GameManager.js'
+import { createGame, getGameTypes } from '../../managers/GameManager.js'
 
 
 export const GameForm = () => {
@@ -38,7 +38,7 @@ export const GameForm = () => {
     }
 
     return (
-        <form className="gameForm">
+        <form className="gameForm box mt-1">
             <h2 className="gameForm__maker">Register New Game</h2>
             <fieldset>
                 <div className="form-group">

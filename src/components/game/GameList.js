@@ -28,6 +28,9 @@ export const GameList = (props) => {
                                 <div className="game__players has-text-left">{game.number_of_players} players needed</div>
                                 <div className="game__skillLevel has-text-left">Skill level is {game.skill_level}</div>
                             </section>
+                            <div className="">
+                                <button className="btn__update button is-link" onClick={() => navigate(`/games/${game.id}`)}>Update</button>
+                            </div>
                         </div>
                     </React.Fragment>
                 })

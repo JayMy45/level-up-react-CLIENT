@@ -31,7 +31,7 @@ export const NavBar = () => {
                             </div>
                             <div className="navbar-item">
                                 <li className="navbar__item">
-                                    Navigation link
+                                    <Link to="/games">Games</Link>
                                 </li>
                             </div>
                             <div className="navbar-item">
