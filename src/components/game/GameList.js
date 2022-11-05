@@ -16,7 +16,9 @@ export const GameList = (props) => {
         // whenever confirmed by clicking OK/Cancel window.confirm() returns boolean 
         let text = 'Are you sure you want to delete'
         window.confirm(text)
-            ? deleteGame(game.id).then(() => navigate("/games"))
+            ? deleteGame(game.id)
+                .then(getGames()
+                    .then(data => setGames(data)))
             : <></>
     }
 

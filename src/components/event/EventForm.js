@@ -42,7 +42,7 @@ export const EventForm = () => {
 
     return (
         <form className="gameForm">
-            <h1 className="gameForm__title">Register New Game</h1>
+            <h1 className="gameForm__title">Create a New Event</h1>
 
             <fieldset>
                 <div className="form-group">
@@ -57,7 +57,7 @@ export const EventForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="game_type">Games: </label>
-                    <select name="gameId" className="drop__down" value={currentEvent.gameId}
+                    <select name="game" className="drop__down" value={currentEvent.game}
                         onChange={changeEventState}
                     >
                         <option value={0}>Select a Event</option>
