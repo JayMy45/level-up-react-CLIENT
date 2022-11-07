@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { deleteEvent, getEvents } from "../../managers/EventManager.js"
+import { deleteEvent, getEvents, joinEvent, leaveEvent } from "../../managers/EventManager.js"
 import "./Event.css"
 
 export const EventList = (props) => {
@@ -19,6 +19,15 @@ export const EventList = (props) => {
             ? deleteEvent(event.id).then(() => navigate("/events"))
             : <></>
     }
+
+    const handleUnJoin = (eventId) => {
+        leaveEvent(eventId).then(data => { })
+    }
+
+    const handleJoin = (eventId) => {
+        joinEvent(eventId).then(data => setEvents(data))
+    }
+
 
     return (<>
         <header className="title is-3 p-2 has-text-centered" id="event__list-title">Events</header>
@@ -50,6 +59,13 @@ export const EventList = (props) => {
                                 </div>
                                 <div className="mt-1">
                                     <button className="btn__events button is-small is-danger" onClick={(evt) => { confirmDelete(evt, event) }}>Delete</button>
+                                </div>
+                                <div className="mt-6">
+                                    {
+                                        event.joined
+                                            ? <button className="button is-warning is-normal is-rounded p-3" onClick={() => { handleUnJoin(event.id) }}>Leave</button>
+                                            : <button className="button is-primary is-normal is-rounded" onClick={() => { handleJoin(event.id) }}>Join</button>
+                                    }
                                 </div>
                             </div>
                         </div>

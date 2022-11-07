@@ -60,7 +60,6 @@ export const leaveEvent = (eventId) => {
     })
 }
 
-
 // POST user (Join) on an event
 export const joinEvent = (eventId) => {
     // TODO: Write the POST fetch request to join and event
