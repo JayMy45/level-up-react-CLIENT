@@ -26,14 +26,14 @@ export const EventList = (props) => {
             onClick={() => {
                 navigate({ pathname: "/events/new" })
             }}
-        ><span className="has-text-weight-semibold is-size-5">Register New Event</span></button>
+        ><span className="has-text-weight-semibold is-size-5">Schedule New Event</span></button>
         <article className="events">
             {
                 events.map(event => {
                     return <React.Fragment key={`game--${event.id}`}>
                         <div className="columns box columns" id="event__list">
                             <section className="event column">
-
+                                <div><h2>Welcome: Event Details Below</h2></div>
                                 <div className="game__title has-text-left">Organizer: {event.organizer.full_name}</div>
                                 <div className="game__title has-text-left">Game: {event.game.title}</div>
                                 <div className="game__players has-text-left">Description: {event.description}</div>
