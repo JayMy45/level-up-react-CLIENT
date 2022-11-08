@@ -16,16 +16,16 @@ export const EventList = (props) => {
         // whenever confirmed by clicking OK/Cancel window.confirm() returns boolean 
         let text = 'Are you sure you want to delete'
         window.confirm(text)
-            ? deleteEvent(event.id).then(() => navigate("/events"))
+            ? deleteEvent(event.id).then(() => getEvents().then(data => setEvents(data)))
             : <></>
     }
 
     const handleUnJoin = (eventId) => {
-        leaveEvent(eventId).then(data => { })
+        leaveEvent(eventId).then(() => getEvents().then(data => setEvents(data)))
     }
 
     const handleJoin = (eventId) => {
-        joinEvent(eventId).then(data => setEvents(data))
+        joinEvent(eventId).then(() => getEvents().then(data => setEvents(data)))
     }
 
 
