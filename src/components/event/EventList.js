@@ -16,11 +16,13 @@ export const EventList = (props) => {
         // whenever confirmed by clicking OK/Cancel window.confirm() returns boolean 
         let text = 'Are you sure you want to delete'
         window.confirm(text)
-            ? deleteEvent(event.id).then(() => getEvents().then(data => setEvents(data)))
+            ? deleteEvent(event.id)
+                .then(() => getEvents()
+                    .then(data => setEvents(data)))
             : <></>
     }
 
-    const handleUnJoin = (eventId) => {
+    const handleLeave = (eventId) => {
         leaveEvent(eventId).then(() => getEvents().then(data => setEvents(data)))
     }
 
@@ -63,7 +65,7 @@ export const EventList = (props) => {
                                 <div className="mt-6">
                                     {
                                         event.joined
-                                            ? <button className="button is-warning is-normal is-rounded p-3" onClick={() => { handleUnJoin(event.id) }}>Leave</button>
+                                            ? <button className="button is-warning is-normal is-rounded p-3" onClick={() => { handleLeave(event.id) }}>Leave</button>
                                             : <button className="button is-primary is-normal is-rounded" onClick={() => { handleJoin(event.id) }}>Join</button>
                                     }
                                 </div>

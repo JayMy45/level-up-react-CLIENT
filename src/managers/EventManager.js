@@ -50,8 +50,8 @@ export const deleteEvent = (eventId) => {
     })
 }
 
-//~ JOIN EVENT MANAGERS
-// DELETE user (unJoin) from event
+//~ JOIN/LEAVE EVENT MANAGERS
+// DELETE user (Leave) from event
 export const leaveEvent = (eventId) => {
     // TODO: Write the DELETE fetch request to leave an event
     return fetch(`http://localhost:8000/events/${eventId}/leave`, {
