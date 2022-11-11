@@ -20,7 +20,7 @@ export const GameList = (props) => {
             : <></>
     }
 
-
+    //may need to add a Details link for more info or games
     return (<>
         <header className="title is-3 p-2 has-text-centered" id="game__list-title">List of Games</header>
         <button className="btn-2 btn-sep icon-create button is-primary ml-6 mb-1"
