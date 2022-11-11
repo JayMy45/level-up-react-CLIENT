@@ -4,6 +4,8 @@ import "./NavBar.css"
 
 export const NavBar = () => {
     const navigate = useNavigate()
+
+
     return (
         <nav className="navbar has-shadow is-warning mb-5" role="navigation" aria-label="main navigation">
 
@@ -13,14 +15,14 @@ export const NavBar = () => {
                 </a>
 
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" id="burger">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </a>
             </div>
 
-            <div className="navbar-end">
+            <div className="navbar-end nav-links">
                 <div className="navbar-menu">
                     <div>
                         <ul className="navbar-item">

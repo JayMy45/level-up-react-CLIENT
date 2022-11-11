@@ -12,6 +12,7 @@ export const GameForm = () => {
         the properties of this state variable, you need to
         provide some default values.
     */
+
     const [currentGame, setCurrentGame] = useState({
         skillLevel: 0,
         numberOfPlayers: 0,

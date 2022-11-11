@@ -17,7 +17,7 @@ export const EventForm = () => {
         provide some default values.
     */
     const [currentEvent, setCurrentEvent] = useState({
-        game: 0,
+        gameId: 0,
         description: "",
         date: "",
         time: ""
@@ -100,7 +100,7 @@ export const EventForm = () => {
 
                     const event = {
                         description: currentEvent.description,
-                        game: parseInt(currentEvent.game),
+                        gameId: parseInt(currentEvent.game),
                         date: currentEvent.date,
                         time: currentEvent.time
                     }
